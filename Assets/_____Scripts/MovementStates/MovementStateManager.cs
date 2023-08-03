@@ -4,24 +4,42 @@ using UnityEngine;
 
 public class MovementStateManager : MonoBehaviour
 {
-    public float moveSpeed = 3;
-    [HideInInspector] public Vector3 dir;
-    float hInput, vInput;
-    CharacterController controller;
+    #region Movement
+    public float currentMoveSpeed;
+    public float walkSpeed = 3, walkBackSpeed = 2;
+    public float runSpeed = 7, runBackSpeed = 5;
 
+    [HideInInspector] public Vector3 dir;
+    [HideInInspector] public float hInput, vInput;
+    CharacterController controller;
+    #endregion
+
+    #region GroundCheck
     [SerializeField] float groundYOffset;
     [SerializeField] LayerMask groundMask;
     Vector3 spherePos;
+    #endregion
 
+    #region Gravity
     [SerializeField] float gravity = -9.81f;
     Vector3 velocity;
+    #endregion
 
+    #region State
     [HideInInspector] public Animator anim;
+
+    MovementBaseState currentState;
+
+    public IdleState Idle = new IdleState();
+    public WalkState Walk = new WalkState();
+    public RunState Run = new RunState();
+    #endregion
 
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
+        SwitchState(Idle);
     }
 
     void Update()
@@ -29,8 +47,16 @@ public class MovementStateManager : MonoBehaviour
         GetDirectionAndMove();
         Gravity();
 
+        currentState.UpdateState(this);
+
         anim.SetFloat("hInput", hInput);
         anim.SetFloat("vInput", vInput);
+    }
+
+    public void SwitchState(MovementBaseState state)
+    {
+        currentState = state;
+        currentState.EnterState(this);
     }
 
     void GetDirectionAndMove()
@@ -40,7 +66,7 @@ public class MovementStateManager : MonoBehaviour
 
         dir = transform.forward * vInput + transform.right * hInput;
 
-        controller.Move(dir.normalized * moveSpeed * Time.deltaTime);
+        controller.Move(dir.normalized * currentMoveSpeed * Time.deltaTime);
     }
 
     bool isGrounded()

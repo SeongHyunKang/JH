@@ -716,7 +716,6 @@ GameObject:
   - component: {fileID: 1562798799}
   - component: {fileID: 1562798805}
   - component: {fileID: 1562798800}
-  - component: {fileID: 1562798802}
   - component: {fileID: 1562798803}
   - component: {fileID: 1562798804}
   m_Layer: 0
@@ -757,20 +756,6 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &1562798802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1562798798}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07de2622f25078844ae3fc0490d4bdbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSpeed: 5
-  attackPrefab: {fileID: 0}
 --- !u!114 &1562798803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,6 +789,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   gravity: -9.81
+  anim: {fileID: 0}
 --- !u!143 &1562798805
 CharacterController:
   m_ObjectHideFlags: 0
