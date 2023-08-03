@@ -16,8 +16,11 @@ public class MovementStateManager : MonoBehaviour
     [SerializeField] float gravity = -9.81f;
     Vector3 velocity;
 
+    [HideInInspector] public Animator anim;
+
     void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
     }
 
@@ -25,6 +28,9 @@ public class MovementStateManager : MonoBehaviour
     {
         GetDirectionAndMove();
         Gravity();
+
+        anim.SetFloat("hInput", hInput);
+        anim.SetFloat("vInput", vInput);
     }
 
     void GetDirectionAndMove()
@@ -34,7 +40,7 @@ public class MovementStateManager : MonoBehaviour
 
         dir = transform.forward * vInput + transform.right * hInput;
 
-        controller.Move(dir * moveSpeed * Time.deltaTime);
+        controller.Move(dir.normalized * moveSpeed * Time.deltaTime);
     }
 
     bool isGrounded()
