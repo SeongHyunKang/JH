@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 228656817}
   - component: {fileID: 228656816}
   - component: {fileID: 228656815}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -714,10 +714,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1562798799}
-  - component: {fileID: 1562798801}
+  - component: {fileID: 1562798805}
   - component: {fileID: 1562798800}
   - component: {fileID: 1562798802}
   - component: {fileID: 1562798803}
+  - component: {fileID: 1562798804}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -756,22 +757,6 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!54 &1562798801
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1562798798}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 20
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 4
-  m_CollisionDetection: 0
 --- !u!114 &1562798802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -779,7 +764,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562798798}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07de2622f25078844ae3fc0490d4bdbd, type: 3}
   m_Name: 
@@ -798,43 +783,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c554636392d07d44fb8f23e5169ffbf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xAxis:
-    Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 300
-    m_AccelTime: 0
-    m_DecelTime: 0
-    m_InputAxisName: Mouse X
-    m_InputAxisValue: 0
-    m_InvertInput: 0
-    m_MinValue: -180
-    m_MaxValue: 180
-    m_Wrap: 1
-    m_Recentering:
-      m_enabled: 0
-      m_WaitTime: 0
-      m_RecenteringTime: 0
-      m_LegacyHeadingDefinition: 0
-      m_LegacyVelocityFilterStrength: 0
-  yAxis:
-    Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 300
-    m_AccelTime: 0
-    m_DecelTime: 0
-    m_InputAxisName: Mouse Y
-    m_InputAxisValue: 0
-    m_InvertInput: 1
-    m_MinValue: -60
-    m_MaxValue: 60
-    m_Wrap: 0
-    m_Recentering:
-      m_enabled: 0
-      m_WaitTime: 0
-      m_RecenteringTime: 0
-      m_LegacyHeadingDefinition: 0
-      m_LegacyVelocityFilterStrength: 0
   camFollowPos: {fileID: 1519943272}
+  mouseSense: 1
+--- !u!114 &1562798804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562798798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f78fd9a5807461a4383fb0d68358903f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
+  dir: {x: 0, y: 0, z: 0}
+  groundYOffset: 0
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 128
+  gravity: -9.81
+--- !u!143 &1562798805
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562798798}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1.8
+  m_Radius: 0.3
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.0001
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!4 &150052284978679358
 Transform:
   m_ObjectHideFlags: 0
