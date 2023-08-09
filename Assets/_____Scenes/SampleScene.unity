@@ -720,6 +720,7 @@ GameObject:
   - component: {fileID: 1562798804}
   - component: {fileID: 1562798807}
   - component: {fileID: 1562798806}
+  - component: {fileID: 1562798808}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -880,6 +881,20 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1562798808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562798798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07de2622f25078844ae3fc0490d4bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAnim: {fileID: 7050632593103084966}
+  isPiercing: 0
 --- !u!4 &150052284978679358
 Transform:
   m_ObjectHideFlags: 0
@@ -2230,7 +2245,7 @@ Animator:
   m_GameObject: {fileID: 4355856621323083110}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 4838ccfd02b84a7b81c0fac73ac43c66, type: 3}
-  m_Controller: {fileID: 9100000, guid: afbf9b98bfa86e9429940ea699c25c01, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0ee0f2f094bcb1b47ac3f063edc054a9, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

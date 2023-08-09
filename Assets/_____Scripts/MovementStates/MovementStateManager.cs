@@ -97,6 +97,14 @@ public class MovementStateManager : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
+    public void Pierce()
+    {
+        if (Input.GetMouseButton(0) && Input.GetMouseButton(1))
+        {
+            
+        }
+    }
+
     /*private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
