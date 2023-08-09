@@ -35,6 +35,13 @@ public class MovementStateManager : MonoBehaviour
     public RunState Run = new RunState();
     #endregion
 
+    #region AttackCombos
+    private int combo1Counter = 0;
+    private int combo2Counter = 0;
+    private float lastComboTime;
+    private float comboResetTime = 2.0f; // 2초 후에 콤보가 초기화되도록 설정. 원하는대로 조절 가능
+    #endregion
+
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
@@ -49,8 +56,63 @@ public class MovementStateManager : MonoBehaviour
 
         currentState.UpdateState(this);
 
+        HandleAttackInput();
+
         anim.SetFloat("hInput", hInput);
         anim.SetFloat("vInput", vInput);
+    }
+
+    void HandleAttackInput()
+    {
+        bool leftClick = Input.GetMouseButtonDown(0);
+        bool rightClick = Input.GetMouseButtonDown(1);
+
+        // 동시에 누른 경우
+        if (leftClick && rightClick)
+        {
+            // 강력한 찌르기 공격 애니메이션을 실행시키세요
+            anim.SetTrigger("StabAttack"); // 이 트리거를 애니메이터에 추가하세요
+            ResetCombo();
+            return;
+        }
+
+        // 좌클릭: 콤보1 공격
+        if (leftClick)
+        {
+            combo1Counter++;
+            if (combo1Counter > 3) combo1Counter = 1;
+
+            // 애니메이터에 콤보1의 순서에 따라 애니메이션을 실행시키세요
+            anim.SetInteger("LClickCount", combo1Counter);
+
+            lastComboTime = Time.time;
+        }
+
+        // 우클릭: 콤보2 공격
+        if (rightClick)
+        {
+            combo2Counter++;
+            if (combo2Counter > 4) combo2Counter = 1;
+
+            // 애니메이터에 콤보2의 순서에 따라 애니메이션을 실행시키세요
+            anim.SetInteger("RClickCount", combo2Counter);
+
+            lastComboTime = Time.time;
+        }
+
+        // 콤보 초기화
+        if (Time.time - lastComboTime > comboResetTime)
+        {
+            ResetCombo();
+        }
+    }
+
+    void ResetCombo()
+    {
+        combo1Counter = 0;
+        combo2Counter = 0;
+        anim.SetInteger("LClickCount", 0);
+        anim.SetInteger("RClickCount", 0);
     }
 
     public void SwitchState(MovementBaseState state)
