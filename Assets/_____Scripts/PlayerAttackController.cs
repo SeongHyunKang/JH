@@ -1,3 +1,4 @@
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
@@ -10,7 +11,7 @@ public class PlayerAttackController : MonoBehaviour
     private bool isPierceAnimationPlaying = false;
     public bool isPiercing { get; private set; }
 
-    //Combo01 Parameters
+    //Attack Parameters
     public bool isAttacking;
     private float timeSinceLastCombo;
     public int currentCombo = 0;
@@ -26,6 +27,7 @@ public class PlayerAttackController : MonoBehaviour
         timeSinceLastCombo += Time.deltaTime;
 
         Combo1();
+        Combo3();
         Pierce();
     }
 
@@ -77,6 +79,32 @@ public class PlayerAttackController : MonoBehaviour
             //Reset Timer
             timeSinceLastCombo = 0;
         }        
+    }
+
+    private void Combo3()
+    {
+        if (Input.GetMouseButton(1) && timeSinceLastCombo > 0.8f)
+        {
+            currentCombo++;
+            isAttacking = true;
+
+            if (currentCombo > 4)
+            {
+                currentCombo = 1;
+            }
+
+            //Reset
+            if (timeSinceLastCombo > 1f)
+            {
+                currentCombo = 1;
+            }
+
+            //Call Combo3 Triggers
+            playerAnim.SetTrigger("combo03_" + currentCombo);
+
+            //Reset Timer
+            timeSinceLastCombo = 0;
+        }
     }
 
     //this will be used at animation event
