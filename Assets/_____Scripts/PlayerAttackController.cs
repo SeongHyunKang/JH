@@ -108,7 +108,7 @@ public class PlayerAttackController : MonoBehaviour
     }
 
     //this will be used at animation event
-    public void ResetCombo1()
+    public void ResetCombo()
     {
         isAttacking = false;
     }
