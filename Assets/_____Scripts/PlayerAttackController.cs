@@ -2,11 +2,19 @@ using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
 {
+    //Animation References
     [SerializeField] private Animator playerAnim;
     private CharacterController controller;
-    private bool isPierceAnimationPlaying = false;
 
+    //Piercing Parameter
+    private bool isPierceAnimationPlaying = false;
     public bool isPiercing { get; private set; }
+
+    //Combo01 Parameters
+    public bool isAttacking;
+    private float timeSinceLastCombo;
+    public int currentCombo = 0;
+
 
     private void Start()
     {
@@ -15,6 +23,9 @@ public class PlayerAttackController : MonoBehaviour
 
     public void Update()
     {
+        timeSinceLastCombo += Time.deltaTime;
+
+        Combo1();
         Pierce();
     }
 
@@ -40,5 +51,37 @@ public class PlayerAttackController : MonoBehaviour
     private void EndPierceAnimation()
     {
         isPierceAnimationPlaying = false;
+    }
+
+    private void Combo1()
+    {
+        if(Input.GetMouseButton(0) && timeSinceLastCombo > 0.8f)
+        {
+            currentCombo++;
+            isAttacking = true;
+
+            if (currentCombo > 3)
+            {
+                currentCombo = 1;
+            }
+
+            //Reset
+            if (timeSinceLastCombo > 1f)
+            {
+                currentCombo = 1;
+            }
+
+            //Call Combo1 Triggers
+            playerAnim.SetTrigger("combo01_" + currentCombo);
+
+            //Reset Timer
+            timeSinceLastCombo = 0;
+        }        
+    }
+
+    //this will be used at animation event
+    public void ResetCombo1()
+    {
+        isAttacking = false;
     }
 }
