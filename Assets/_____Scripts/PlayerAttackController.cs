@@ -64,7 +64,7 @@ public class PlayerAttackController : MonoBehaviour
 
             if (currentCombo > 3)
             {
-                currentCombo = 1;
+                //currentCombo = 1;
             }
 
             //Reset
@@ -90,7 +90,7 @@ public class PlayerAttackController : MonoBehaviour
 
             if (currentCombo > 4)
             {
-                currentCombo = 1;
+                //currentCombo = 1;
             }
 
             //Reset
