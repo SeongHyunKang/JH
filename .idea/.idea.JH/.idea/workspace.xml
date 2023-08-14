@@ -13,6 +13,7 @@
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Resources/PlayerInput.cs" />
+      <option value="$PROJECT_DIR$/Assets/_____Scripts/MovementStates/MovementStateManager.cs" />
       <option value="$PROJECT_DIR$/Assets/_____Scripts/AimStateManager.cs" />
     </changedPaths>
   </component>
@@ -59,6 +60,7 @@
       <updated>1690980952648</updated>
       <workItem from="1690980958604" duration="643000" />
       <workItem from="1691065038123" duration="2421000" />
+      <workItem from="1692010514105" duration="2084000" />
     </task>
     <servers />
   </component>

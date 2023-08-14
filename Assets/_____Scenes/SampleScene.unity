@@ -725,7 +725,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 1562798799}
+  m_LookAt: {fileID: 3979154744375412700}
   m_Follow: {fileID: 1519943272}
   m_Lens:
     FieldOfView: 60
@@ -1611,13 +1611,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519943271}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1562798799}
-  m_RootOrder: 1
+  m_Father: {fileID: 3979154744375412700}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1562798798
 GameObject:
@@ -1653,7 +1653,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3979154744375412700}
-  - {fileID: 1519943272}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1683,6 +1682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c554636392d07d44fb8f23e5169ffbf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modelTransform: {fileID: 3979154744375412700}
   camFollowPos: {fileID: 1519943272}
   mouseSense: 1
 --- !u!114 &1562798804
@@ -2601,6 +2601,7 @@ Transform:
   m_Children:
   - {fileID: 4308674133596123882}
   - {fileID: 2810562792746481917}
+  - {fileID: 1519943272}
   m_Father: {fileID: 1562798799}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3194,7 +3195,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 0ee0f2f094bcb1b47ac3f063edc054a9, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 

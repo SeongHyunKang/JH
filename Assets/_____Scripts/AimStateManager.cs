@@ -5,6 +5,7 @@ using UnityEngine;
 public class AimStateManager : MonoBehaviour
 {
     float xAxis, yAxis;
+    [SerializeField] Transform modelTransform;
     [SerializeField] Transform camFollowPos;
     [SerializeField] float mouseSense = 1;
 
@@ -18,6 +19,8 @@ public class AimStateManager : MonoBehaviour
     private void LateUpdate()
     {
         camFollowPos.localEulerAngles = new Vector3(yAxis,camFollowPos.localEulerAngles.y, camFollowPos.localEulerAngles.z);
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, xAxis, transform.eulerAngles.z);
+        modelTransform.eulerAngles = new Vector3(modelTransform.eulerAngles.x, xAxis, modelTransform.eulerAngles.z);
+        //-> Changed from this.transform to modelTransform because the rotation should be affecting the model, not the playerCharacter.
+        // This is because I've enabled root motion on animation, which makes the model's xyz transform change, and not the playerCharacter.
     }
 }
