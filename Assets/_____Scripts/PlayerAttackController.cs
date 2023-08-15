@@ -3,19 +3,26 @@ using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
 {
-    //Animation References
+    #region Animation References
     [SerializeField] private Animator playerAnim;
     private CharacterController controller;
+    #endregion
 
-    //Piercing Parameter
+    #region Piercing Parameter
     private bool isPierceAnimationPlaying = false;
     public bool isPiercing { get; private set; }
+    #endregion
 
-    //Attack Parameters
+    #region Attack Parameter
     public bool isAttacking;
     private float timeSinceLastCombo;
     public int currentCombo = 0;
+    #endregion
 
+    #region Roll Parameter
+    private float timeSinceLastRoll = -10.0f;
+    private const float rollCooldown = 2.0f;
+    #endregion
 
     private void Start()
     {
@@ -29,6 +36,7 @@ public class PlayerAttackController : MonoBehaviour
         Combo1();
         Combo3();
         Pierce();
+        Roll();
     }
 
     public void Pierce()
@@ -104,6 +112,35 @@ public class PlayerAttackController : MonoBehaviour
 
             //Reset Timer
             timeSinceLastCombo = 0;
+        }
+    }
+
+    private void Roll()
+    {
+        if (Time.time - timeSinceLastRoll < rollCooldown)
+        {
+            return;
+        }
+
+        if (Input.GetKey(KeyCode.W) && Input.GetKeyDown(KeyCode.Space))
+        {
+            playerAnim.SetTrigger("FRoll");
+            timeSinceLastRoll = Time.time;
+        }
+        else if (Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.Space))
+        {
+            playerAnim.SetTrigger("BRoll");
+            timeSinceLastRoll = Time.time;
+        }
+        else if (Input.GetKey(KeyCode.A) && Input.GetKeyDown(KeyCode.Space))
+        {
+            playerAnim.SetTrigger("LRoll");
+            timeSinceLastRoll = Time.time;
+        }
+        else if (Input.GetKey(KeyCode.D) && Input.GetKeyDown(KeyCode.Space))
+        {
+            playerAnim.SetTrigger("RRoll");
+            timeSinceLastRoll = Time.time;
         }
     }
 
